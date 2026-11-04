@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Overlay · pedirjogo</title>
+  <!--
+    Overlay para o OBS: adicione uma fonte "Navegador" apontando para
+      http://localhost:3000/overlay.html?limit=5
+    Fundo transparente; atualiza sozinho quando chegam votos.
+    Parâmetros: ?limit=3..10  &compact=1 (sem imagens)
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    html, body { margin: 0; background: transparent; color: #fff; font-family: 'Bricolage Grotesque', system-ui, sans-serif; }
+    .box { width: 420px; padding: 14px; border-radius: 16px; background: rgba(11, 11, 16, 0.82); backdrop-filter: blur(6px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .title { font-weight: 800; font-size: 15px; letter-spacing: 0.02em; text-transform: uppercase; color: #c6ff3d; margin: 0 0 10px; display: flex; justify-content: space-between; }
+    .title small { color: #8b8aa0; text-transform: none; font-weight: 700; }
+    .row { display: grid; grid-template-columns: 26px 92px 1fr auto; gap: 10px; align-items: center; padding: 6px 0; transition: transform 0.3s; }
+    .compact .row { grid-template-columns: 26px 1fr auto; }
+    .compact img { display: none; }
+    .pos { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #8b8aa0; text-align: center; }
+    .row:first-of-type .pos { color: #c6ff3d; }
+    img { width: 92px; height: 43px; object-fit: cover; border-radius: 6px; }
+    .name { font-weight: 700; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .votes { font-family: 'JetBrains Mono', monospace; font-weight: 700; background: #8f6bff; padding: 3px 9px; border-radius: 999px; font-size: 14px; }
+    .bump { animation: bump 0.6s ease-out; }
+    @keyframes bump { 30% { transform: scale(1.04); background: rgba(198, 255, 61, 0.12); } }
+    .empty { color: #8b8aa0; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="box" id="box">
+    <p class="title">Fila de jogos <small id="cta"></small></p>
+    <div id="rows"></div>
+  </div>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const limit = Math.min(Math.max(Number(params.get('limit')) || 5, 3), 10);
+    if (params.get('compact') === '1') document.getElementById('box').classList.add('compact');
+    let previous = new Map();
+
+    async function load() {
+      const [{ games }, me] = await Promise.all([
+        fetch(`/api/games?limit=${limit}`).then((r) => r.json()),
+        fetch('/api/me').then((r) => r.json()).catch(() => ({ bots: {} })),
+      ]);
+      document.getElementById('cta').textContent = me.bots?.twitch ? '!pedirjogo <nome>' : '';
+      const rows = document.getElementById('rows');
+      rows.replaceChildren();
+      if (!games.length) {
+        const p = document.createElement('div');
+        p.className = 'empty';
+        p.textContent = 'Nenhum pedido ainda — digite !pedirjogo no chat';
+        rows.append(p);
+      }
+      for (const g of games) {
+        const row = document.createElement('div');
+        row.className = 'row';
+        if (previous.has(g.appid) && previous.get(g.appid) !== g.votes) row.classList.add('bump');
+        const pos = Object.assign(document.createElement('div'), { className: 'pos', textContent: g.position });
+        const img = Object.assign(document.createElement('img'), { alt: '' });
+        img.onerror = () => { img.style.visibility = 'hidden'; };
+        img.src = g.headerImage || '';
+        const name = Object.assign(document.createElement('div'), { className: 'name', textContent: g.name });
+        const votes = Object.assign(document.createElement('div'), { className: 'votes', textContent: g.votes });
+        row.append(pos, img, name, votes);
+        rows.append(row);
+      }
+      previous = new Map(games.map((g) => [g.appid, g.votes]));
+    }
+
+    load();
+    new EventSource('/api/stream').addEventListener('ranking', () => load());
+    setInterval(load, 60_000); // segurança caso o SSE caia
+  </script>
+</body>
+</html>

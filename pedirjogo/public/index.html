@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fila de jogos · pedirjogo</title>
+  <meta name="description" content="Peça e vote nos jogos que você quer ver na live." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="logo" href="/">pedir<span>jogo</span></a>
+      <div id="auth" class="auth" aria-live="polite"></div>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow"><span class="live-dot"></span> fila da live</p>
+      <h1>Qual jogo você quer ver na stream?</h1>
+      <div class="search">
+        <label class="visually-hidden" for="search-input">Buscar jogo na Steam</label>
+        <input id="search-input" type="search" placeholder="Busque na Steam… ex: Hades, Balatro, Hollow Knight" autocomplete="off" spellcheck="false" />
+        <div id="search-results" class="search-results" role="listbox" hidden></div>
+      </div>
+      <p id="bot-hints" class="hints"></p>
+    </section>
+
+    <section id="spotlight" class="spotlight" hidden></section>
+
+    <nav class="tabs" role="tablist">
+      <button role="tab" class="tab active" data-status="pendente">Na fila <span class="count" id="count-pendente"></span></button>
+      <button role="tab" class="tab" data-status="jogado">Já jogados</button>
+      <button role="tab" class="tab admin-only" data-status="recusado" hidden>Recusados</button>
+      <a class="overlay-link admin-only" href="/overlay.html" target="_blank" rel="noopener" hidden>Overlay p/ OBS ↗</a>
+    </nav>
+
+    <main id="list" class="list" aria-live="polite"></main>
+
+    <footer class="footer">
+      Dados de avaliações, jogadores e ranking vêm da loja da Steam e são atualizados periodicamente.
+      Projeto open source · <a href="https://github.com/jmartellet/gameplay-studies/tree/main/pedirjogo" id="repo-link">GitHub</a>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
