@@ -1,0 +1,7 @@
+target/
+dbt_packages/
+logs/
+.ipynb_checkpoints/
+*.json.key
+*service-account*.json
+.env

@@ -1,0 +1,29 @@
+name: calango-analytics
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'calango-analytics/**'
+      - '.github/workflows/calango-analytics.yml'
+  pull_request:
+    paths:
+      - 'calango-analytics/**'
+      - '.github/workflows/calango-analytics.yml'
+  workflow_dispatch:
+
+jobs:
+  check-models:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: calango-analytics
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: calango-analytics/scripts/requirements-check.txt
+      - run: pip install -r scripts/requirements-check.txt
+      - run: python scripts/check_models.py
