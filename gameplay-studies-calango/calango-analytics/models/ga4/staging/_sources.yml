@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: ga4
+    description: >
+      Obfuscated GA4 BigQuery export of the Google Merchandise Store
+      (public dataset, 2020-11-01 to 2021-01-31).
+    database: bigquery-public-data
+    schema: ga4_obfuscated_sample_ecommerce
+    tables:
+      - name: events
+        identifier: events_*   # date-sharded tables, filtered with _table_suffix
+        description: One row per GA4 event.

@@ -1,0 +1,59 @@
+version: 2
+
+seeds:
+  - name: calango_videos_raw
+    description: >
+      Snapshot of every video listed on youtube.com/@CalangoLive/videos, collected on 2026-11-23
+      from the public channel page. Views and ages are YouTube's rounded display values.
+    columns:
+      - name: video_id
+        tests: [unique, not_null]
+
+  - name: calango_game_aliases
+    description: >
+      Regex patterns that map title variations ("TAROV", "SCAPE FROM TARKOV", "CS:GO COM OS AMIGOS")
+      to one canonical game and genre. The lowest priority number wins.
+
+models:
+  - name: stg_calango__videos
+    description: Scraped text fields converted to numbers (seconds, views, age).
+    columns:
+      - name: video_id
+        tests: [unique, not_null]
+      - name: views
+        tests: [not_null]
+      - name: duration_sec
+        tests: [not_null]
+      - name: age_unit
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['day', 'week', 'month', 'year']
+
+  - name: int_calango__videos_dated
+    description: Adds an estimated publish date from the relative age and the channel order.
+
+  - name: fct_calango_videos
+    description: One row per video with series, game, genre, episode and title features.
+    columns:
+      - name: video_id
+        tests: [unique, not_null]
+      - name: content_type
+        tests:
+          - accepted_values:
+              values: ['Gameplay', 'React', 'Outro']
+
+  - name: fct_calango_games
+    description: Content volume and performance per game.
+    columns:
+      - name: game
+        tests: [unique, not_null]
+
+  - name: fct_calango_series_decay
+    description: Episode-level views relative to episode 1 for long series.
+
+  - name: fct_calango_decay_curve
+    description: Median retention vs episode 1 per episode number.
+
+  - name: fct_calango_quarterly
+    description: Videos, hours and views per (estimated) publish quarter.

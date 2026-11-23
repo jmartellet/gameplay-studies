@@ -1,0 +1,70 @@
+priority,pattern,game,genre
+1,TARKOV|SCAPE FROM,Escape from Tarkov,Shooter
+2,ELDEN RING.*NIGHTRE,Elden Ring Nightreign,Soulslike
+3,ELDEN RING|RENNALA,Elden Ring,Soulslike
+4,DARK SOULS 3,Dark Souls 3,Soulslike
+5,DARK SOULS 2,Dark Souls 2,Soulslike
+6,DARK SOULS,Dark Souls,Soulslike
+7,DEMON'?S SOULS,Demon's Souls,Soulslike
+8,BLOODBORNE,Bloodborne,Soulslike
+9,SEKIRO,Sekiro,Soulslike
+10,LIES OF P,Lies of P,Soulslike
+11,SILKSONG,Hollow Knight: Silksong,Metroidvania/Plataforma
+12,HOLLOW KNIGHT,Hollow Knight,Metroidvania/Plataforma
+13,BLASPHEMOUS,Blasphemous,Metroidvania/Plataforma
+14,CUPHEAD,Cuphead,Metroidvania/Plataforma
+15,JUMP KING,Jump King,Metroidvania/Plataforma
+16,COUNTER.?STRIKE|CS:? ?GO|\bCS\b,Counter-Strike,Shooter
+17,VALORANT,Valorant,Shooter
+18,FORTNITE,Fortnite,Shooter
+19,FAR CRY,Far Cry,Shooter
+20,BALDUR,Baldur's Gate 3,RPG
+21,SKYRIM,Skyrim,RPG
+22,OBLIVION,Oblivion,RPG
+23,CYBERPUNK,Cyberpunk 2077,RPG
+24,OMORI,Omori,RPG
+25,POK[EÉ]MON,Pokémon,RPG
+26,GOD OF WAR RAGNAR,God of War Ragnarök,Ação/Aventura
+27,GOD OF WAR,God of War,Ação/Aventura
+28,BREATH OF THE WILD,Zelda: Breath of the Wild,Ação/Aventura
+29,OCARINA,Zelda: Ocarina of Time,Ação/Aventura
+30,ZELDA|\bLINK\b,Zelda (outros),Ação/Aventura
+31,RED DEAD REDEMPTION 2|READ DEAD 2,Red Dead Redemption 2,Ação/Aventura
+32,RED DEAD,Red Dead Redemption,Ação/Aventura
+33,HORIZON FORBIDDEN,Horizon Forbidden West,Ação/Aventura
+34,HORIZON ZERO,Horizon Zero Dawn,Ação/Aventura
+35,SPIDER.?MAN,Spider-Man,Ação/Aventura
+36,\bGTA\b,GTA,Ação/Aventura
+37,BULLY,Bully,Ação/Aventura
+38,THE LAST OF US,The Last of Us,Ação/Aventura
+39,DYING LIGHT 2,Dying Light 2,Sobrevivência/Sandbox
+40,DYING LIGHT,Dying Light,Sobrevivência/Sandbox
+41,MINECRAFT|SKYBLOCK,Minecraft,Sobrevivência/Sandbox
+42,PALWORLD,Palworld,Sobrevivência/Sandbox
+43,V RISING,V Rising,Sobrevivência/Sandbox
+44,SUBNAUTICA,Subnautica,Sobrevivência/Sandbox
+45,\bRAFT\b,Raft,Sobrevivência/Sandbox
+46,GROUNDED,Grounded,Sobrevivência/Sandbox
+47,\bRUST\b,Rust,Sobrevivência/Sandbox
+48,PROJECT ZOMBOID,Project Zomboid,Sobrevivência/Sandbox
+49,DREDGE,Dredge,Sobrevivência/Sandbox
+50,RESIDENT EVIL REQUIEM|RESIDENT EVIL 9,Resident Evil Requiem,Terror
+51,RESIDENT EVIL:? ?4,Resident Evil 4,Terror
+52,RESIDENT EVIL,Resident Evil (outros),Terror
+53,SILENT HILL,Silent Hill,Terror
+54,ALIEN ISOLATION,Alien Isolation,Terror
+55,PHASMOPHOBIA,Phasmophobia,Terror
+56,LETHAL COMPANY,Lethal Company,Terror
+57,DEAD BY DAYLIGHT|\bDBD\b,Dead by Daylight,Terror
+58,THE QUARRY|MAN OF MEDAN|HOUSE OF ASHES|DARK PICTURES,Supermassive (The Quarry e Dark Pictures),Terror
+59,FOBIA,Fobia,Terror
+60,LITTLE NIGHTMARES,Little Nightmares,Terror
+61,HADES,Hades,Roguelike
+62,DEAD CELLS,Dead Cells,Roguelike
+63,VAMPIRE SURVIVOR,Vampire Survivors,Roguelike
+64,GEOGUESS,GeoGuessr,Puzzle/Casual
+65,CONTEXTO|TERMO,Termo e Contexto,Puzzle/Casual
+66,AMONG US,Among Us,Puzzle/Casual
+67,FALL GUYS,Fall Guys,Puzzle/Casual
+68,GARTIC,Gartic Phone,Puzzle/Casual
+69,POKER|CARD SHARK,Poker e cartas,Puzzle/Casual

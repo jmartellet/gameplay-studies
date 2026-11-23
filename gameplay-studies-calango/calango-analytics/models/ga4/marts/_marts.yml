@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: fct_sessions
+    description: One row per GA4 session (user_pseudo_id + ga_session_id).
+    columns:
+      - name: session_key
+        description: Concatenation of user_pseudo_id and ga_session_id.
+        tests: [unique, not_null]
+      - name: channel
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Obfuscated', 'Direct', 'Paid Search', 'Display', 'Organic Search',
+                       'Organic Social', 'Email', 'Affiliates', 'Referral', 'Unassigned']
+      - name: revenue_usd
+        description: Purchase revenue in USD for the session (0 if no purchase).
+
+  - name: fct_funnel_daily
+    description: Daily funnel by device and channel.
+
+  - name: fct_channel_attribution
+    description: Attributed conversions and revenue per channel under five models.
+    columns:
+      - name: attribution_model
+        tests:
+          - accepted_values:
+              values: ['first_touch', 'last_touch', 'last_non_direct', 'linear', 'position_based']
+
+  - name: fct_weekly_cohorts
+    description: Weekly retention of new users.
+    columns:
+      - name: retention_rate
+        tests: [not_null]
+
+  - name: fct_item_performance
+    description: Views, add-to-carts, purchases and revenue per item.
+    columns:
+      - name: item_id
+        tests: [unique, not_null]
+
+  - name: int_purchase_touchpoints
+    description: Sessions of each converting user within the attribution lookback window.

@@ -1,0 +1,54 @@
+name: 'calango_analytics'
+version: '1.0.0'
+config-version: 2
+
+# dbt Cloud ignores this; only used if you ever run dbt Core locally
+profile: 'calango_analytics'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  # --- GA4 module ---
+  # The public sample covers 2020-11-01 to 2021-01-31
+  start_date: '20201101'
+  end_date: '20210131'
+  # Lookback window (days) used by the multi-touch attribution model
+  attribution_lookback_days: 30
+
+  # --- YouTube module ---
+  # Day the channel page was scraped. "2 years ago" is relative to this date.
+  youtube_snapshot_date: '2026-11-23'
+  # Minimum number of episodes for a series to enter the decay analysis
+  min_series_episodes: 5
+
+models:
+  calango_analytics:
+    # Everything is a table: the BigQuery sandbox does not allow DML
+    # (MERGE/INSERT), so incremental models are not an option there.
+    +materialized: table
+    ga4:
+      +tags: ['ga4']
+    youtube:
+      +tags: ['youtube']
+
+seeds:
+  calango_analytics:
+    calango_videos_raw:
+      +column_types:
+        channel_position: int64
+        video_id: string
+        title: string
+        duration: string
+        views_text: string
+        age_text: string
+    calango_game_aliases:
+      +column_types:
+        priority: int64
+        pattern: string
+        game: string
+        genre: string

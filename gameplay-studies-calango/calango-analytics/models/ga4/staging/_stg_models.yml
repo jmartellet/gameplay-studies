@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_ga4__events
+    description: One row per GA4 event with the main event_params flattened.
+    columns:
+      - name: event_date
+        tests: [not_null]
+      - name: event_name
+        tests: [not_null]
+      - name: user_pseudo_id
+        tests: [not_null]
+
+  - name: stg_ga4__items
+    description: One row per item in ecommerce events.
+    columns:
+      - name: event_name
+        tests:
+          - accepted_values:
+              values: ['view_item', 'add_to_cart', 'begin_checkout', 'purchase']
