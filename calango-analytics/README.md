@@ -26,8 +26,7 @@ Quem faz live e sobe VOD no YouTube decide toda semana **o que jogar e por quant
 
 ## Principais achados
 
-> _Rascunho: reescrever com minhas palavras depois de rodar o notebook._
-
+> 
 - **A audiência é concentrada:** 1% dos vídeos somam 20% das 95 milhões de views. O vídeo mediano tem cerca de 11 mil.
 - **Séries perdem a maior parte do público depois do episódio 1:** na mediana, o episódio 2 mantém 40% das views do episódio 1, o 5 mantém 23% e o 10 mantém 16%. Em 101 de 105 séries longas, o episódio 1 é o mais visto.
 - **Volume de conteúdo não é audiência:** Escape from Tarkov é o 2º jogo em número de vídeos (199), com mediana de 3,2 mil views. Among Us teve 11 vídeos e mediana de 483 mil.
