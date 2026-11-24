@@ -17,5 +17,3 @@ Rode tudo no console do BigQuery (no navegador, modo sandbox gratuito).
 | Y2 | `youtube/02_maior_sequencia.sql` | *gaps and islands* (`LAG` + soma acumulada) |
 | Y3 | `youtube/03_melhor_episodio_por_serie.sql` | `QUALIFY ROW_NUMBER()`, `PERCENT_RANK` |
 | Y4 | `youtube/04_antes_e_depois_de_2025.sql` | agregação condicional (`COUNTIF`, `APPROX_QUANTILES(IF())`), `SAFE_DIVIDE` |
-
-Os exercícios `youtube/` usam as tabelas criadas pelo dbt. Troque `seu-projeto.dbt_seu_nome` pelo seu projeto e dataset.
